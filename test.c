@@ -2,7 +2,12 @@
 #include <emscripten.h>
 
 EMSCRIPTEN_KEEPALIVE
-int test_function(int number)
+int fibonacci(int n)
 {
-    return number * 4 - 2;
+    if (n <= 1)
+    {
+        return n;
+    }
+
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }

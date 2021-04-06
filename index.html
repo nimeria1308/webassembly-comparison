@@ -1,12 +1,23 @@
 <html>
-    <body>
+    <head>
         <script src="test.js"></script>
         <script src="test.c.js"></script>
         <script>
-            function runTest() {
-                console.log(Module._test_function(13));
+            function runTest(name, func, number) {
+                var t0 = performance.now();
+                var result = func(number);
+                var elapsed = performance.now() - t0;
+                var message =  `[${name}] took ${elapsed.toFixed(2)} ms: Fibbonaci(${number}) = ${result}`;
+                window.document.writeln(`<p>${message}</p>`);
             }
-            Module.onRuntimeInitialized = runTest;
+        </script>
+    </head>
+    <body>
+        <script>
+            Module.onRuntimeInitialized = function() {
+                runTest("JavaScript", fibonacci, 38);
+                runTest("WebAssembly", Module._fibonacci, 38);
+            }
         </script>
     </body>
 </html>
