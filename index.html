@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <script src="test.js"></script>
+        <script src="test.c.js"></script>
+        <script>
+            function runTest() {
+                console.log(Module._test_function(13));
+            }
+            Module.onRuntimeInitialized = runTest;
+        </script>
+    </body>
+</html>
